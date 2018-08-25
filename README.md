@@ -9,9 +9,13 @@ Hit the pg-up key to immediately close the application.
 
 I created a few scan modes:
 
-StartScan(); //mimics normal scan
-ForeverScan(); //never stops scanning - filecount increases 2000x faster
-SuperSlowScan(); //normal scan with huge random delays between each file
-SuperInfectedScan(); //normal scan but 1/100 files are infected
-FastScan(); //scans completes in under a minute 
+StartScan : mimics normal scan
+
+ForeverScan : never stops scanning - filecount increases 2000x faster
+
+SuperSlowScan : normal scan with huge random delays between each file
+
+SuperInfectedScan : normal scan but 1/100 files are infected
+
+FastScan : scans completes in under a minute 
 
