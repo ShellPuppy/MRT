@@ -1,5 +1,5 @@
 # MRT
-Completely fake windows malicious file removal tool made for scam baiting purposes. 
+Completely fake windows malicious file removal tool made for scambaiting purposes. 
 
 Please have fun with it, tweak it, and just wait a moment.
 
@@ -11,7 +11,7 @@ Hit the pg-up key to immediately close the application.
 
 I created a few scan modes:
 
-StartScan : mimics normal scan
+NormalScan : mimics normal scan
 
 ForeverScan : never stops scanning - filecount increases 2000x faster
 
