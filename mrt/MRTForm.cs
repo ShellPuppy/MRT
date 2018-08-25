@@ -191,7 +191,7 @@ namespace mrt
                     {
                         FileCount+=1928;
 
-                        scanControl1.lbCurrentFile.Text = filepath;
+                        scanControl1.lbCurrentFile.Text = CompactString(filepath);
 
                         scanControl1.lbFileCount.Text = string.Format("Files Scanned: {0}", FileCount);
 
@@ -237,7 +237,7 @@ namespace mrt
                 {
                     FileCount++;
 
-                    scanControl1.lbCurrentFile.Text = filepath;
+                    scanControl1.lbCurrentFile.Text = CompactString(filepath);
 
                     scanControl1.lbFileCount.Text = string.Format("Files Scanned: {0}", FileCount);
 
@@ -293,7 +293,7 @@ namespace mrt
                     FileCount++;
                     if (rnd.NextDouble() > .99) InfectedCount++;
 
-                    scanControl1.lbCurrentFile.Text = filepath;
+                    scanControl1.lbCurrentFile.Text = CompactString(filepath);
 
                     scanControl1.lbFileCount.Text = string.Format("Files Scanned: {0}", FileCount);
 
@@ -343,7 +343,7 @@ namespace mrt
                 {
                     FileCount++;
 
-                    scanControl1.lbCurrentFile.Text = filepath;
+                    scanControl1.lbCurrentFile.Text = CompactString(filepath);
 
                     scanControl1.lbFileCount.Text = string.Format("Files Scanned: {0}", FileCount);
 
@@ -382,6 +382,16 @@ namespace mrt
         private void MRTForm_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.PageUp) Environment.Exit(0);
+        }
+
+        private string CompactString(string st, int length=80)
+        {
+            if(st.Length > length)
+            {
+                return @"...\" + st.Substring(st.Length - length);
+            }
+
+            return st;
         }
 
         public MRTForm()
