@@ -121,11 +121,12 @@
             // 
             // lbCurrentFile
             // 
+            this.lbCurrentFile.AutoEllipsis = true;
             this.lbCurrentFile.BackColor = System.Drawing.Color.Transparent;
             this.lbCurrentFile.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCurrentFile.Location = new System.Drawing.Point(40, 170);
             this.lbCurrentFile.Name = "lbCurrentFile";
-            this.lbCurrentFile.Size = new System.Drawing.Size(429, 16);
+            this.lbCurrentFile.Size = new System.Drawing.Size(461, 16);
             this.lbCurrentFile.TabIndex = 8;
             this.lbCurrentFile.Text = "C:\\Program Files\\";
             // 
