@@ -3,6 +3,8 @@ Completely fake windows malicious file removal tool made for scam baiting purpos
 
 Please have fun with it, tweak it, and just wait a moment.
 
+![](ScreenShots/Screen1.PNG)
+
 Cancel button and X button won't allow the user to close.
 
 Hit the pg-up key to immediately close the application.
