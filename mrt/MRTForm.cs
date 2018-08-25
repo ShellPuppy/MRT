@@ -53,9 +53,7 @@ namespace mrt
                     lbHeader1.Text = "Scamming your computer";
                     lbHeader2.Text = "";
 
-                    //Set scan type here
-
-                    //StartScan();
+                    //NormalScan();
                     //ForeverScan();
                     //SuperSlowScan();
                     SuperInfectedScan();
@@ -64,6 +62,7 @@ namespace mrt
                     break;
                 //Results Page
                 case 3:
+                    cmdCancel.Text = "Finished";
                     cmdNext.Enabled = false;
                     resultsControl1.Visible = true;
                     lbHeader1.Text = "Scan results";
@@ -79,7 +78,7 @@ namespace mrt
         //Back Button
         private void cmdBack_Click(object sender, EventArgs e) => SetPage(CurrentPage - 1);
 
-        //Cancel Button
+        //Cancel/Finish Button
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -117,12 +116,12 @@ namespace mrt
             if (depth == 0) ScanCompleted = true;
         }
 
-        private void StartScan()
+        private void NormalScan()
         {
             ScanCompleted = false;
 
             //Get a list of files to 'scan' in a new thread 
-            Task.Factory.StartNew(() => GetFiles(@"c:\"));
+            Task.Factory.StartNew(() => GetFiles(@"C:\"));
 
             DateTime StartTime = DateTime.Now;
 
@@ -179,7 +178,7 @@ namespace mrt
                 ScanCompleted = false;
 
                 //Get a list of files to 'scan' in a new thread 
-                Task.Factory.StartNew(() => GetFiles(@"c:\"));
+                Task.Factory.StartNew(() => GetFiles(@"C:\"));
 
                 scanControl1.pBar.Maximum = 100;
 
@@ -219,7 +218,7 @@ namespace mrt
             ScanCompleted = false;
 
             //Get a list of files to 'scan' in a new thread 
-            Task.Factory.StartNew(() => GetFiles(@"c:\"));
+            Task.Factory.StartNew(() => GetFiles(@"C:\"));
 
             DateTime StartTime = DateTime.Now;
 
@@ -262,8 +261,6 @@ namespace mrt
 
             //Show results page
             SetPage(3);
-            //Show results page
-            SetPage(3);
         }
 
         private void SuperInfectedScan()
@@ -274,7 +271,7 @@ namespace mrt
             ScanCompleted = false;
 
             //Get a list of files to 'scan' in a new thread 
-            Task.Factory.StartNew(() => GetFiles(@"c:\"));
+            Task.Factory.StartNew(() => GetFiles(@"C:\"));
 
             DateTime StartTime = DateTime.Now;
 
@@ -316,8 +313,6 @@ namespace mrt
             //Show results page
             SetPage(3);
 
-            //Show results page
-            SetPage(3);
         }
 
         private void FastScan()
