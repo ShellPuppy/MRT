@@ -92,7 +92,7 @@ namespace mrt
         private ConcurrentQueue<string> FilesToScan = new ConcurrentQueue<string>();
         private bool ScanCompleted;
 
-        private void GetFiles(string path = "", int depth = 0)
+        private void GetFiles(string path = "", int MaxFileCount = 100000, int depth = 0)
         {
             //Search entire c drive
             if (string.IsNullOrEmpty(path)) path = @"c:\";
@@ -102,11 +102,12 @@ namespace mrt
                 foreach (string st in Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly))
                 {
                     FilesToScan.Enqueue(st);
+                    if (FilesToScan.Count() >= MaxFileCount) return;
                 }
 
                 foreach (var directory in Directory.GetDirectories(path))
                 {
-                    GetFiles(directory, depth + 1);
+                    GetFiles(directory, MaxFileCount, depth + 1);
                 }
 
             }
@@ -145,8 +146,6 @@ namespace mrt
 
                     scanControl1.lbInfectionCount.Text = string.Format("Files Infected: {0}", InfectedCount);
 
-                    scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount + 10000;
-                    scanControl1.pBar.Value = FileCount;
                 }
 
                 //Elapsed Timer
@@ -154,6 +153,16 @@ namespace mrt
 
                 Application.DoEvents();
 
+                if (FileCount % 10 == 0)
+                {
+                    //Refresh the progressbar less often to reduce cpu usage
+                    scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount + 10000;
+                    scanControl1.pBar.Value = FileCount;
+                    Application.DoEvents();
+                }
+                else { this.Refresh(); }
+
+                //Wait a moment
                 System.Threading.Thread.Sleep(10);
             }
 
@@ -188,21 +197,25 @@ namespace mrt
                 {
                     if (FilesToScan.TryDequeue(out string filepath))
                     {
-                        FileCount+=1928;
+                        FileCount += 1928;
 
                         scanControl1.lbCurrentFile.Text = filepath;
 
                         scanControl1.lbFileCount.Text = string.Format("Files Scanned: {0}", FileCount);
 
                         scanControl1.lbInfectionCount.Text = string.Format("Files Infected: {0}", InfectedCount);
-    
+
                     }
 
                     //Elapsed Timer
                     scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
 
-                    Application.DoEvents();
+                    if (FileCount % 10 == 0)
+                        Application.DoEvents();
+                    else
+                        this.Refresh();
 
+                    //Wait a moment
                     System.Threading.Thread.Sleep(10);
                 }
 
@@ -248,7 +261,7 @@ namespace mrt
 
 
                 //Random pause
-                for(int i=0;i< (rnd.Next() % 200) + 1;i++)
+                for (int i = 0; i < (rnd.Next() % 200) + 1; i++)
                 {
                     //Elapsed Timer
                     scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
@@ -276,6 +289,7 @@ namespace mrt
             DateTime StartTime = DateTime.Now;
 
             scanControl1.lbStartTime.Text = string.Format("Start time: {0:hh:mm tt}", StartTime);
+ 
 
             this.Refresh();
 
@@ -295,18 +309,24 @@ namespace mrt
                     scanControl1.lbFileCount.Text = string.Format("Files Scanned: {0}", FileCount);
 
                     scanControl1.lbInfectionCount.Text = string.Format("Files Infected: {0}", InfectedCount);
-
-                    scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount + 10000;
-                    scanControl1.pBar.Value = FileCount;
                 }
 
+                //Make the text red as soon as an infection is found
                 if (InfectedCount == 1) scanControl1.lbInfectionCount.ForeColor = Color.DarkRed;
 
                 //Elapsed Timer
                 scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
 
-                Application.DoEvents();
+                if (FileCount % 10 == 0)
+                {
+                    //Refresh the progressbar less often to reduce cpu usage
+                    scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount + 10000;
+                    scanControl1.pBar.Value = FileCount;
+                    Application.DoEvents();
+                }
+                else { this.Refresh(); }
 
+                //Wait a moment
                 System.Threading.Thread.Sleep(10);
             }
 
@@ -343,15 +363,21 @@ namespace mrt
                     scanControl1.lbFileCount.Text = string.Format("Files Scanned: {0}", FileCount);
 
                     scanControl1.lbInfectionCount.Text = string.Format("Files Infected: {0}", InfectedCount);
-
-                    scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount;
-                    scanControl1.pBar.Value = FileCount;
                 }
 
                 //Elapsed Timer
                 scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
 
-                Application.DoEvents();
+                if (FileCount % 10 == 0)
+                {
+                    scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount;
+                    scanControl1.pBar.Value = FileCount;
+                    Application.DoEvents();
+                }
+                else
+                {
+                    this.Refresh();
+                }
 
                 System.Threading.Thread.Sleep(10);
             }
