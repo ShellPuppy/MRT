@@ -9,7 +9,9 @@ Cancel button and X button won't allow the user to close.
 
 Hit the pg-up key to immediately close the application.
 
-I created a few scan modes:
+Hit the pg-down key to start hanging. 
+
+# Scan Modes
 
 NormalScan : mimics normal scan
 
@@ -19,5 +21,5 @@ SuperSlowScan : normal scan with huge random delays between each file
 
 SuperInfectedScan : normal scan but 1/100 files are infected
 
-FastScan : scans completes in under a minute 
+FastScan : scan completes in under a minute 
 
