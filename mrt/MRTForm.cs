@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections.Concurrent;
+using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace mrt
 {
@@ -12,6 +14,8 @@ namespace mrt
     {
 
         private int CurrentPage { get; set; }
+
+        private bool StopResponding { get; set; } = false;
 
         private void SetPage(int PageNumber)
         {
@@ -54,9 +58,9 @@ namespace mrt
                     lbHeader2.Text = "";
 
                     //NormalScan();
-                    //ForeverScan();
+                    ForeverScan();
                     //SuperSlowScan();
-                    SuperInfectedScan();
+                    //SuperInfectedScan();
                     //FastScan();
 
                     break;
@@ -151,14 +155,12 @@ namespace mrt
                 //Elapsed Timer
                 scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
 
-                Application.DoEvents();
-
                 if (FileCount % 10 == 0)
                 {
                     //Refresh the progressbar less often to reduce cpu usage
                     scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount + 10000;
                     scanControl1.pBar.Value = FileCount;
-                    Application.DoEvents();
+                    if(!StopResponding) Application.DoEvents();
                 }
                 else { this.Refresh(); }
 
@@ -211,7 +213,7 @@ namespace mrt
                     scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
 
                     if (FileCount % 10 == 0)
-                        Application.DoEvents();
+                        if (!StopResponding) Application.DoEvents();
                     else
                         this.Refresh();
 
@@ -266,7 +268,7 @@ namespace mrt
                     //Elapsed Timer
                     scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
 
-                    Application.DoEvents();
+                    if (!StopResponding) Application.DoEvents();
 
                     System.Threading.Thread.Sleep(10);
                 }
@@ -322,7 +324,7 @@ namespace mrt
                     //Refresh the progressbar less often to reduce cpu usage
                     scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount + 10000;
                     scanControl1.pBar.Value = FileCount;
-                    Application.DoEvents();
+                    if (!StopResponding) Application.DoEvents();
                 }
                 else { this.Refresh(); }
 
@@ -372,7 +374,7 @@ namespace mrt
                 {
                     scanControl1.pBar.Maximum = FilesToScan.Count() + FileCount;
                     scanControl1.pBar.Value = FileCount;
-                    Application.DoEvents();
+                    if (!StopResponding) Application.DoEvents();
                 }
                 else
                 {
@@ -386,7 +388,6 @@ namespace mrt
             SetPage(3);
         }
 
-
         //User is trying to close 
         private void MRTForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -399,11 +400,21 @@ namespace mrt
             e.Cancel = true;
         }
 
-        //Secret abort key - PageUp instantly closes
+        //Secret abort keys 
         private void MRTForm_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            //PageUp instantly closes
             if (e.KeyCode == Keys.PageUp) Environment.Exit(0);
+
+            //PageDown causes hang behaviour 
+            if (e.KeyCode == Keys.PageDown)
+            {
+                this.TopMost = true;
+                this.Cursor = Cursors.WaitCursor;
+                StopResponding = true;
+            }
         }
+
 
         public MRTForm()
         {

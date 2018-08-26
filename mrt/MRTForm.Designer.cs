@@ -93,6 +93,7 @@
             // 
             // resultsControl1
             // 
+            this.resultsControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("resultsControl1.BackgroundImage")));
             this.resultsControl1.Location = new System.Drawing.Point(0, 60);
             this.resultsControl1.MaximumSize = new System.Drawing.Size(516, 330);
             this.resultsControl1.MinimumSize = new System.Drawing.Size(516, 330);
