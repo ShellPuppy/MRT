@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::mrt.Properties.Resources.MRT_01_cr1;
+            this.BackgroundImage = global::mrt.Properties.Resources.MRT_01_cr;
             this.MaximumSize = new System.Drawing.Size(516, 330);
             this.MinimumSize = new System.Drawing.Size(516, 330);
             this.Name = "StartControl";

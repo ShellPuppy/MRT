@@ -58,10 +58,10 @@ namespace mrt
                     lbHeader2.Text = "";
 
                     //NormalScan();
-                    ForeverScan();
+                    //ForeverScan();
                     //SuperSlowScan();
                     //SuperInfectedScan();
-                    //FastScan();
+                    FastScan();
 
                     break;
                 //Results Page
@@ -100,6 +100,8 @@ namespace mrt
         {
             //Search entire c drive
             if (string.IsNullOrEmpty(path)) path = @"c:\";
+
+            if (FilesToScan.Count() >= MaxFileCount) return;
 
             try
             {
@@ -212,10 +214,13 @@ namespace mrt
                     //Elapsed Timer
                     scanControl1.lbElapsedTime.Text = string.Format("Time elapsed: {0:hh\\:mm\\:ss}", (StartTime - DateTime.Now));
 
-                    if (FileCount % 10 == 0)
-                        if (!StopResponding) Application.DoEvents();
-                    else
-                        this.Refresh();
+                  //  if (!StopResponding)
+                    {
+                        if (FileCount % 10 == 0)
+                            Application.DoEvents();
+                        else
+                            this.Refresh();
+                    }
 
                     //Wait a moment
                     System.Threading.Thread.Sleep(10);
@@ -341,8 +346,8 @@ namespace mrt
         {
             ScanCompleted = false;
 
-            //Get a list of files to 'scan' in a new thread 
-            Task.Factory.StartNew(() => GetFiles(@"C:\Windows\assembly\"));
+            //Get a list of files to 'scan' in a new thread - limit to 1000 files so it finishes quickly
+            Task.Factory.StartNew(() => GetFiles(@"C:\Windows\",1000));
 
             DateTime StartTime = DateTime.Now;
 
@@ -424,6 +429,9 @@ namespace mrt
             SetPage(0);
         }
 
-
+        private void MRTForm_Layout(object sender, LayoutEventArgs e)
+        {
+           // System.Threading.Thread.Sleep(200);
+        }
     }
 }

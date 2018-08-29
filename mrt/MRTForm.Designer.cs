@@ -34,10 +34,10 @@
             this.cmdBack = new System.Windows.Forms.Button();
             this.cmdNext = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.resultsControl1 = new mrt.ResultsControl();
-            this.optionsControl1 = new mrt.OptionsControl();
             this.startControl1 = new mrt.StartControl();
             this.scanControl1 = new mrt.ScanControl();
+            this.optionsControl1 = new mrt.OptionsControl();
+            this.resultsControl1 = new mrt.ResultsControl();
             this.SuspendLayout();
             // 
             // lbHeader1
@@ -91,28 +91,6 @@
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
-            // resultsControl1
-            // 
-            this.resultsControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("resultsControl1.BackgroundImage")));
-            this.resultsControl1.Location = new System.Drawing.Point(0, 60);
-            this.resultsControl1.MaximumSize = new System.Drawing.Size(516, 330);
-            this.resultsControl1.MinimumSize = new System.Drawing.Size(516, 330);
-            this.resultsControl1.Name = "resultsControl1";
-            this.resultsControl1.Size = new System.Drawing.Size(516, 330);
-            this.resultsControl1.TabIndex = 9;
-            this.resultsControl1.Visible = false;
-            // 
-            // optionsControl1
-            // 
-            this.optionsControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.optionsControl1.Location = new System.Drawing.Point(0, 60);
-            this.optionsControl1.MaximumSize = new System.Drawing.Size(516, 330);
-            this.optionsControl1.MinimumSize = new System.Drawing.Size(516, 330);
-            this.optionsControl1.Name = "optionsControl1";
-            this.optionsControl1.Size = new System.Drawing.Size(516, 330);
-            this.optionsControl1.TabIndex = 8;
-            this.optionsControl1.Visible = false;
-            // 
             // startControl1
             // 
             this.startControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("startControl1.BackgroundImage")));
@@ -132,6 +110,28 @@
             this.scanControl1.Size = new System.Drawing.Size(516, 330);
             this.scanControl1.TabIndex = 6;
             this.scanControl1.Visible = false;
+            // 
+            // optionsControl1
+            // 
+            this.optionsControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.optionsControl1.Location = new System.Drawing.Point(0, 60);
+            this.optionsControl1.MaximumSize = new System.Drawing.Size(516, 330);
+            this.optionsControl1.MinimumSize = new System.Drawing.Size(516, 330);
+            this.optionsControl1.Name = "optionsControl1";
+            this.optionsControl1.Size = new System.Drawing.Size(516, 330);
+            this.optionsControl1.TabIndex = 8;
+            this.optionsControl1.Visible = false;
+            // 
+            // resultsControl1
+            // 
+            this.resultsControl1.BackColor = System.Drawing.Color.Transparent;
+            this.resultsControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.resultsControl1.Location = new System.Drawing.Point(0, 60);
+            this.resultsControl1.MaximumSize = new System.Drawing.Size(516, 330);
+            this.resultsControl1.MinimumSize = new System.Drawing.Size(516, 330);
+            this.resultsControl1.Name = "resultsControl1";
+            this.resultsControl1.Size = new System.Drawing.Size(516, 330);
+            this.resultsControl1.TabIndex = 9;
             // 
             // MRTForm
             // 

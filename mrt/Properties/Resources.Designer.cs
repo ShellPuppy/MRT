@@ -81,16 +81,6 @@ namespace mrt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MRT_01_cr1 {
-            get {
-                object obj = ResourceManager.GetObject("MRT_01_cr1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon MRT_103 {
@@ -101,12 +91,22 @@ namespace mrt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Bitmap MRT_ResultsGoodr {
+        internal static System.Drawing.Icon MRT_104 {
             get {
-                object obj = ResourceManager.GetObject("MRT_ResultsGoodr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("MRT_104", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon MRT_105 {
+            get {
+                object obj = ResourceManager.GetObject("MRT_105", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }
